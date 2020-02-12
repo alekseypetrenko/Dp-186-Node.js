@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function sortString(str){
+            let numReg = /(\d+)/g;
+            let arr = str.split(" ")
+            
+            arr.sort((a, b) => {
+                return (Number(a.match(numReg)) - Number(b.match(numReg)));
+            })          
+
+            return arr;
+        }
+
+        console.log(sortString("is2 Thi1s T4est 3a"));
+        console.log(sortString("4of Fo1r pe6ople g3ood th5e the2"));
+        console.log(sortString(""));
+       
+
+    </script>
+</body>
+</html>
