@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+        // Write a function that takes an integer as input, and returns the number of bits that 
+        // are equal to one in the binary representation of that number. You can guarantee that input is non-negative.
+        // Example: The binary representation of 1234 is 10011010010, so the function should return 5 in this case
+    
+        function convertToBinary(int){
+            let bits = Number(int.toString(2));
+            bits = -bits > 0 ? -bits : bits;         
+            return bits
+        }
+
+        function checkOne(bits){
+            let arr = bits.toString().split("");      
+            arr = arr.map(x => Number(x))
+            let count = 0;
+            
+            for (let i =0; i < arr.length; i++){
+                if (arr[i] === 1) {
+                    count++
+                }
+            }
+            return count;
+        }
+      
+        console.log(checkOne(convertToBinary(1234)));
+        console.log(checkOne(convertToBinary(5)));
+        console.log(checkOne(convertToBinary(666)));
+        console.log(checkOne(convertToBinary(1)));
+        console.log(checkOne(convertToBinary(-5)));
+    
+    </script>
+</body>
+</html>
