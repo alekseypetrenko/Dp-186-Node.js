@@ -27,7 +27,7 @@ function myLastIndexOf(str, value, index = str.length){
     index = index < 0 ? index = 0 : index; 
 
     for (let i = index; i >= 0; i--) {
-        if (str[i] == value){
+        if (str[i] == value.charAt()){
             return i
         }
     }
@@ -39,13 +39,38 @@ console.log(myLastIndexOf(str, "e", -2));  // => return -1
 console.log(myLastIndexOf(str, "A"));  // => return 0
 console.log(myLastIndexOf(str, "e"));  // => return 12
 console.log(myLastIndexOf(str, "e", 3));  // => return 2
+console.log(myLastIndexOf(str, "Aleksey"));  // => return 0
+
+// ------ heleper for includes - my indexOf() ----- //
+
+const str = "Aleksey Petrenko";
+
+function myIndexOf(str, value, index = 0){  
+    index = index > str.length ? str.length : index;
+    index = index < 0 ? index = 0 : index; 
+
+    for (let i = index; i < str.length; i++) {
+        if (str[i] == value.charAt()){
+            return i
+        }
+    }
+
+    return -1
+}
+
+console.log(myIndexOf(str, "e", -2));  // => return 2
+console.log(myIndexOf(str, "A"));  // => return 0
+console.log(myIndexOf(str, "e"));  // => return 12
+console.log(myIndexOf(str, "e", 3));  // => return 2
+console.log(myIndexOf(str, "Petrenko"));  // => return 0
+
 
 
 // ------ includes() ----- //
 
 function myIncludes(str, searchString, index){
     
-    return str.indexOf(searchString, index) !== -1
+    return myIndexOf(str, searchString, index) !== -1
 
 }
 
