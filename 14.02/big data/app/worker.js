@@ -35,13 +35,28 @@ self.onmessage = function(event) {
             break;
         case "countCars":
             // for test
-            let arr = []
+            // let arr = []
 
-            for (let i =0; i < 20; i++){
-                arr.push(data.cars[i])
-            }
+            // for (let i =0; i < 20; i++){
+            //     arr.push(data.cars[i])
+            // }
 
-            self.postMessage(arr)
+            // self.postMessage(arr)
+            break;
+        case "oldAndNew":
+            let newestCar = data.cars.map(el => {
+                return el.THEFT_DATA.match(/[^T]*/)
+            }).map(el => el[0].split("-").join("")).sort((a,b) => a - b)[data.cars.length -1]
+
+            let oldestCar = data.cars.map(el => {
+                return el.THEFT_DATA.match(/[^T]*/)
+            }).map(el => el[0].split("-").join("")).sort((a,b) => a-b)[0]
+
+            let resulArr = [];
+            resulArr.push({newestCar: newestCar}, {oldestCar: oldestCar})
+
+
+            self.postMessage(resulArr)
     }
 
     
