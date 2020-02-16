@@ -1,7 +1,8 @@
 self.onmessage = function(event) {
     const data = event.data;
+    const cars = data.cars;
     const colors = [];
-    data.cars.forEach(el => {
+    cars.forEach(el => {
         if (el.COLOR !== "НЕВИЗНАЧЕНИЙ") {
             colors.push(el.COLOR)
         }
@@ -34,27 +35,47 @@ self.onmessage = function(event) {
             self.postMessage(mostFreq)
             break;
         case "countCars":
-            // for test
-            // let arr = []
+            function groupByOVD(arr){
+                return arr.reduce(
+                    (acc, item) => {
+                        if(acc[item.OVD]){
+                            acc[item.OVD].push(item)
+                        } else {
+                            acc[item.OVD] = [item]
+                        }
+                        return acc
+                    },
+                    {}
+                )
+            }
 
-            // for (let i =0; i < 20; i++){
-            //     arr.push(data.cars[i])
-            // }
+            function getSumOfBrands(groupedObjectOVD){
+                return Object.keys(groupedObjectOVD).map(
+                    item => {
+                        let count = 0;
+                        groupedObjectOVD[item].forEach(
+                            item => item.BRAND ? count++ : count = 0
+                        )
+                        return {OVD: item, count} 
+                    }
+                )
+            }
 
-            // self.postMessage(arr)
+            let result = getSumOfBrands(groupByOVD(cars))
+
+            self.postMessage(result)
             break;
         case "oldAndNew":
-            let newestCar = data.cars.map(el => {
+            let newestCar = cars.map(el => {
                 return el.THEFT_DATA.match(/[^T]*/)
-            }).map(el => el[0].split("-").join("")).sort((a,b) => a - b)[data.cars.length -1]
+            }).map(el => el[0].split("-").join("")).sort((a,b) => a - b)[cars.length -1]
 
-            let oldestCar = data.cars.map(el => {
+            let oldestCar = cars.map(el => {
                 return el.THEFT_DATA.match(/[^T]*/)
             }).map(el => el[0].split("-").join("")).sort((a,b) => a-b)[0]
 
             let resulArr = [];
             resulArr.push({newestCar: newestCar}, {oldestCar: oldestCar})
-
 
             self.postMessage(resulArr)
     }
