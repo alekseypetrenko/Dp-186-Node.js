@@ -10,13 +10,13 @@ self.onmessage = function(event) {
     
     if(colors.length == 0) return null
     switch(data.find){
-        case "colors":
+        case "countColor":
             self.postMessage(colors)
             break;
-        case "mostFreq":
+        case "maxColor":
             let count = 0;
             const storeColors = {};
-            let mostFreq;
+            let maxColor;
 
             for(let i = 0; i < colors.length; i++){
                 const color = colors[i];
@@ -29,10 +29,10 @@ self.onmessage = function(event) {
 
                 if(storeColors[color] > count){
                     count = storeColors[color];
-                    mostFreq = colors[i]
+                    maxColor = colors[i]
                 }
             }
-            self.postMessage(mostFreq)
+            self.postMessage(maxColor)
             break;
         case "countCars":
             function groupByOVD(arr){
@@ -66,18 +66,26 @@ self.onmessage = function(event) {
             self.postMessage(result)
             break;
         case "oldAndNew":
-            let newestCar = cars.map(el => {
-                return el.THEFT_DATA.match(/[^T]*/)
-            }).map(el => el[0].split("-").join("")).sort((a,b) => a - b)[cars.length -1]
+            function oldAndNew(cars){
+                let oldestCar = {name: cars[0]["BRAND"], date: cars[0]["THEFT_DATA"]};
+                let youngestCar = {name: cars[0]["BRAND"], date: cars[0]["THEFT_DATA"]};
 
-            let oldestCar = cars.map(el => {
-                return el.THEFT_DATA.match(/[^T]*/)
-            }).map(el => el[0].split("-").join("")).sort((a,b) => a-b)[0]
+                cars.forEach(element => {
+                    if (new Date(oldestCar.date) > new Date(element.THEFT_DATA)){
+                        oldestCar = {name: element["BRAND"], date: element.THEFT_DATA}
+                    }
 
-            let resulArr = [];
-            resulArr.push({newestCar: newestCar}, {oldestCar: oldestCar})
+                    if (new Date(youngestCar.date) < new Date(element.THEFT_DATA)){
+                        youngestCar = {name: element["BRAND"], date: element.THEFT_DATA}
+                    }
+                });
+                return [oldestCar, youngestCar]
+            
+            }
 
-            self.postMessage(resulArr)
+            let resultArr = oldAndNew(cars)
+
+            self.postMessage(resultArr)
     }
 
     

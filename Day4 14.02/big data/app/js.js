@@ -1,11 +1,11 @@
 let worker = new Worker("app/worker.js");
 
 function countColor(){
-    worker.postMessage({find: "colors", cars})
+    worker.postMessage({find: "countColor", cars})
 }
 
-function mostFrequent(){
-    worker.postMessage({find: "mostFreq", cars})
+function maxColor(){
+    worker.postMessage({find: "maxColor", cars})
 }
 
 function countCars(){
