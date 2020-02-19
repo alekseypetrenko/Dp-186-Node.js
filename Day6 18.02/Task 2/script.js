@@ -23,7 +23,7 @@ function meeting(rooms, chairs){
             } 
         } 
     }
-    return chairsSum === chairs ? result : "Not enought!"
+    return chairsSum === chairs ? result : "Not enought!";
 }
 
 console.log(meeting([['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXXXXX', 9], ['XXXXXX', 9]], 4));  // -> (3) [0, 1, 3]
