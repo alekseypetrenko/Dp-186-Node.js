@@ -8,23 +8,24 @@ let plane  = [
     [7,8]  // G
   ]
 
-  function findClosesPoints(arr){
+
+function findClosesPoints(arr){
     let minDistance = Infinity;
-    let distance;
-    let pointOne;
-    let pointTwo;
-    
-    for (let i = 0; i < arr.length - 1; i++) {
-        distance = Math.sqrt(Math.pow((arr[i+1][0] - arr[i][0]), 2) + Math.pow((arr[i+1][1] - arr[i][1]), 2));
-            if (distance < minDistance){
-                minDistance = distance;
-                pointOne = arr[i];
-                pointTwo = arr[i+1]
+    let currentDistance, firstPoint, secondPoint;
+
+    // сравниваем 0-й элемент массива со 2-м, 3-м и т.д.
+    // затем сравниваем 1-й элемент массива с 3-м, 4-м и т.д.
+    for (let i = 0; i < arr.length; i++) { 
+        for (let j = i+1; j < arr.length; j++) {
+            currentDistance = Math.sqrt(Math.pow(arr[j][0] - arr[i][0], 2) + Math.pow(arr[j][1] - arr[i][1], 2))             
+            if (currentDistance < minDistance){
+                minDistance = currentDistance;
+                firstPoint = arr[i];
+                secondPoint = arr[j];
             }
         }
-        return [pointOne, pointTwo]
     }
+    return [firstPoint,secondPoint]
+}
 
 console.log(findClosesPoints(plane));
-// 0: (2) [5, 5]
-// 1: (2) [6, 3]
