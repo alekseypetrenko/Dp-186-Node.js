@@ -1,0 +1,2 @@
+Hello Node from text.txt 
+Another line, appended
