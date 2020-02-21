@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "Xiaomi A1",
+        "year" : 2018,
+        "price" : 3000
+    },  
+    {
+        "name" : "Xiaomi D2",
+        "year" : 2014,
+        "price" : 5000
+    },  
+    {
+        "name" : "Xiaomi F1",
+        "year" : 2019,
+        "price" : 9000
+    }
+]
