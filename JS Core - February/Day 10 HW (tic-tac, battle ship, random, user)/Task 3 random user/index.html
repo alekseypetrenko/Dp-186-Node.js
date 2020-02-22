@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+    Самый молодой юзер - (возраст, имя, фамилия)
+    Самый старший юзер - (возраст, имя, фамилия)
+    Количество мужчин в выборке - (количество)
+    Количество женщин в выборке - (количество)
+    Средний возраст мужчин в выборке - (возраст)
+    Средний возраст женщин в выборке - (возраст)
+    Город с наибольшим количеством юзеров в выборке - (город, количество)
+     -->
+    <header>
+        <button class="myButton" onclick="loadInfo()" id="showInfo">Показать информацию о юзерах</button>
+    </header>
+
+    <div>
+        <label for="youngest">Самый молодой юзер(возраст, имя, фамилия)</label>
+        <input type="text" disabled id="youngest">
+    </div>
+    <div>
+        <label for="oldest">Самый старший юзер(возраст, имя, фамилия)</label>
+        <input type="text" disabled id="oldest">
+    </div>
+    <div>
+        <label for="menNum">Количество мужчин в выборке</label>
+        <input type="text" disabled id="menNum">
+    </div>
+    <div>
+        <label for="womenNum">Количество женщин в выборке</label>
+        <input type="text" disabled id="womenNum">
+    </div>
+    <div>
+        <label for="manAge">Средний возраст мужчин в выборке</label>
+        <input type="text" disabled id="manAvgAge">
+    </div>
+    <div>
+        <label for="womenAge">Средний возраст женщин в выборке</label>
+        <input type="text" disabled id="womenAvgAge">
+    </div>
+    <div>
+        <label for="city">Город с наибольшим количеством юзеров в выборкe(город, количество)</label>
+        <input type="text" disabled id="city">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
