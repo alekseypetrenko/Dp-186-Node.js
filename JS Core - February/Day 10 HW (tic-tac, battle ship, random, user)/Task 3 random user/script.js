@@ -1,4 +1,4 @@
-function loadInfo(link = "https://randomuser.me/api/?results=300"){
+function loadInfo(link = "https://randomuser.me/api/?results=1000"){
     let ajax = new XMLHttpRequest();
     
     ajax.onreadystatechange = function(){
@@ -21,10 +21,10 @@ function usersAge(results){
     let old = {date: results[0].dob.date};
     results.forEach(el => {
         if (young.date < el.dob.date){
-            young = {date: el.dob.age, firstname: el.name["first"], lastname: el.name["last"] }
+            young = {date: el.dob.age, firstname: el.name["first"], lastname: el.name["last"] };
         }
         if (old.date > el.dob.date){
-            old = {date: el.dob.age, firstname: el.name["first"], lastname: el.name["last"] }
+            old = {date: el.dob.age, firstname: el.name["first"], lastname: el.name["last"] };
         }
     });
     youngest.value = `${young.date}, ${young.firstname} ${young.lastname}`;
@@ -32,7 +32,8 @@ function usersAge(results){
 }
 
 function menCount(results){
-    let menCount = 0, womenCount = 0;
+    let menCount = 0;
+    let womenCount = 0;
     results.forEach(el => el.gender === "male" ? menCount++ : womenCount++);
     menNum.value = `${menCount}`;
     womenNum.value = `${womenCount}`;
@@ -57,11 +58,21 @@ function averageAge(results){
     womenAvgAge.value = Math.floor(womenAgeSum/womenCount);
 }
 
-
 function city(results){
-    let obj = {};
-    results.forEach(el=> {
-        console.log(el.location.city);
-    });
-    
+    let cities = {};
+    let maxUsers = {city: "", count: 0};
+    results.forEach(el => {
+        if(cities[el.location.city]){
+            cities[el.location.city]++;
+        } else {
+            cities[el.location.city] = 1;
+        }
+        Object.keys(cities).map(el => {
+            if(cities[el] > maxUsers.count){
+                maxUsers.count = cities[el];
+                maxUsers.city = el;
+            }
+        })
+    })
+    countUsers.value = `${maxUsers.city}, ${maxUsers.count}`;
 }
