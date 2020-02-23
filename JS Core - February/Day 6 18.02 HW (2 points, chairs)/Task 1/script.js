@@ -13,8 +13,8 @@ function findClosesPoints(arr){
     let minDistance = Infinity;
     let currentDistance, firstPoint, secondPoint;
 
-    // сравниваем 0-й элемент массива со 2-м, 3-м и т.д.
-    // затем сравниваем 1-й элемент массива с 3-м, 4-м и т.д.
+    // сравниваем 0-й элемент массива со 1-м, 2-м и т.д.
+    // затем сравниваем 1-й элемент массива с 2-м, 3-м и т.д.
     for (let i = 0; i < arr.length; i++) { 
         for (let j = i+1; j < arr.length; j++) {
             currentDistance = Math.sqrt(Math.pow(arr[j][0] - arr[i][0], 2) + Math.pow(arr[j][1] - arr[i][1], 2))             
