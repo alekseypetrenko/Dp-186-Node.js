@@ -26,6 +26,7 @@ function coordsAndDamadge(attacks) {
     return damage
 }
 
+
 function shipLength(board) {
     let ship1 = 0, ship2 = 0, ship3 = 0;
     board.forEach(element => {
