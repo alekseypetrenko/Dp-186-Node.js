@@ -1,6 +1,8 @@
 function countdown(time) {
     let sign = "+";
     time < 0 ? sign = "-" : sign = "+";
+
+    time = Math.abs(time)
     let seconds = Math.floor((time / 1000) % 60);
     let minutes = Math.floor((time / (1000 * 60)) % 60);
     let hours = Math.floor((time / (1000 * 60 * 60)));
