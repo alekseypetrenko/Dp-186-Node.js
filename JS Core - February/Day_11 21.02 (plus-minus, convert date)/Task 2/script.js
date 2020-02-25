@@ -4,7 +4,7 @@ function countdown(time) {
 
     time = Math.abs(time)
     let seconds = Math.floor((time / 1000) % 60);
-    let minutes = Math.floor((time / (1000 * 60)) % 60);
+    let minutes = Math.floor((time % (60*60*1000)) / 60000);
     let hours = Math.floor((time / (1000 * 60 * 60)));
 
     hours = (hours < 10) ? hours : hours;
@@ -18,5 +18,5 @@ function countdown(time) {
 
 console.log(countdown(-154800000));
 console.log(countdown(0));
-console.log(countdown(610000));
+console.log(countdown(61000));
 console.log(countdown(360000000));
