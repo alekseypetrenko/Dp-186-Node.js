@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    Домашнее задание по http server
+
+    1) Есть Task c полями
+    { "title": "Some text", "duration": 45 }
+
+    2) Клиент должен иметь возможность отправить через POST в виде json данные задачи. Сервер должен получить эти данные
+    и записать в файл, пусть именем файла будет название задачи или сгенерировання id, библиотека для этого uuid. На
+    каждую задачу должен создаваться новый файл
+
+    3) Клиент отправляет GET запрос и получает все задачи из всех файликов в виде json массива
+    [{ "title": "Some text", "duration": 45 }, { "title": "Some text", "duration": 45 }]
 </body>
+
 </html>
