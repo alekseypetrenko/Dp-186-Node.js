@@ -22,7 +22,7 @@ function addNewIitem() {
     document.getElementById("toDoItem").value = "";
     addToLocal(); 
 
-    // WHY - Unexpectd end of JSON input ?????123
+    // WHY - Unexpectd end of JSON input ?????
 
     // let  arr = JSON.parse(localStorage.getItem("todos") || []);
     // arr.push(newItem)
