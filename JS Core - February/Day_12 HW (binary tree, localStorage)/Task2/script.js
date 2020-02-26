@@ -23,8 +23,7 @@ function addNewIitem() {
     addToLocal(); 
 
     // WHY - Unexpectd end of JSON input ?????
-    // const arr = JSON.parse(localStorage.getItem("todos") || []);
-    // arr.push(newItem);
+
     // let  arr = JSON.parse(localStorage.getItem("todos") || []);
     // arr.push(newItem)
     // localStorage.setItem("todos", JSON.stringify(arr));
