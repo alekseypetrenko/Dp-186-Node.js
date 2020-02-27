@@ -2,28 +2,35 @@ function sortTriangles(arr) {
     let copyArr = [];
     arr.forEach(element => {
         copyArr.push(element)
-        
+
     });
 
-   // console.log(copyArr);
-    
-    
+    // console.log(copyArr);
+
+
 }
 
 
-sortTriangles([{a: 2},{b: 3}])
+sortTriangles([{ a: 2 }, { b: 3 }])
 
 let triangles = [
-    { vertices: "ABC", a: 10, b: 20, c: 22.36},
-    { vertices: "BCA", b: 35, c: 40, a: 40},
-    { vertices: "EDF", f: 40, e: 50, d: 65.3},
-    { vertices: "ABC", a: 10, b: 20, c: 20},
-        
+    { vertices: "ABC", a: 10, b: 20, c: 22.36 },
+    { vertices: "BCA", b: 35, c: 40, a: 40 },
+    { vertices: "EDF", f: 40, e: 50, d: 65.3 },
+    { vertices: "EDF", f: 40, e: 123, d: 65.3 },
+    { vertices: "ABC", a: 10, b: 20, c: 20 },
+
 ]
 
-function getUniqVertices(arr){
-    let uniq = [];
+function getUniqVertices(arr) {
+    const uniq = Object.values(
+        arr.reduce((acc, cur) => {
+            acc[cur["vertices"]] = cur;
+            return acc
+        }, {})
+    )
 
-
+    return uniq
 }
 
+console.log(getUniqVertices(triangles));
