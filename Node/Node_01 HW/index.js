@@ -32,13 +32,15 @@ const server = http.createServer((req, res) => {
             if (err) {
                 throw err
             }
-            files.forEach(file => {
+            files.forEach((file, i) => {
                 // Почему внутри forEach для readFile нужно указать полный путь
                 // path.join(__dirname, "tasks", file, а не просто file
                 fs.readFile(path.join(__dirname, "tasks", file), "utf8", (err, data) => {
                     arr.push(data);
                     // в консоль выводит инфу с файлов
-                    console.log(arr);
+                    if (files.length - 1 === i) {
+                        res.end(JSON.stringify(arr));
+                    }
                 })
 
             });
