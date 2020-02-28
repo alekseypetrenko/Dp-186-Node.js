@@ -1,51 +1,47 @@
 function sortTriangles(arr) {
-    let copyArr = JSON.parse(JSON.stringify(arr))
+    // делаем копию исходного массива, которую можно изменять
+    let myArr = JSON.parse(JSON.stringify(arr));
 
-    copyArr = copyArr.length < 1 || !Array.isArray(copyArr) ? {status: "failed", reason: "Аргумент пустой или не является массивом"} : copyArr
+    myArr = myArr.length < 1 || !Array.isArray(myArr) ? { status: "failed", reason: "Аргумент пустой или не является массивом" } : myArr;
 
-    for (let i = 0; i < copyArr.length; i++) {
-        for (let j = i + 1; j < copyArr.length; j++) {
-            if (copyArr[i].vertices === copyArr[j].vertices){
-                return {status: "failed", reason: "Вершины треугольников не могут иметь одинаковое имя"}
-                
-            } 
-
-            
+    for (let i = 0; i < myArr.length; i++) {
+        for (let j = i + 1; j < myArr.length; j++) {
+            if (myArr[i].vertices === myArr[j].vertices) {
+                return { status: "failed", reason: "Вершины треугольников не могут иметь одинаковое имя" };
+            }
+        }
+        let values = Object.values(myArr[i]);
+        values.shift();
+        // проверяем является ли фигура треугольником
+        if (values[0] + values[1] <= values[2] || values[1] + values[2] <= values[0] || values[2] + values[1] <= values[0]) {
+            return { status: "failed", reason: 'Ошибка, сумма длин каждых двух сторон должна быть больше длины третьей стороны.' };
+        }
+        let splittedVert = myArr[i].vertices.toLowerCase().split("");
+        for (vert in myArr[i]) {
+            if (vert != "vertices") {
+                if (typeof myArr[i][vert] != "number" || myArr[i][vert] == 0) {
+                    return { status: "failed", reason: "Вершины должны быть числами больше нуля" };
+                }
+                if (splittedVert[0] != vert && splittedVert[1] != vert && splittedVert[2] != vert) {
+                    return { status: "failed", reason: "Ключи вершин должны соответствовать названию треугольника. Например 'ABC', a: 1, b: 2, c: 3" };
+                }
+            }
         }
 
-        let splittedVert = copyArr[i].vertices.toLowerCase().split("");
-        let keys = Object.keys(copyArr[i]);
-        keys.shift();
-        let values = Object.values(copyArr[i]);
-        values.shift()
-        console.log(values);
-        
-        if(values[0] + values[1] <= values[2] || values[1] + values[2] <= values[0] || values[2] + values[1] <= values[0]) {
-            return {reson: 'Ошибка, сумма длин каждых двух сторон должна быть больше длины третьей стороны.'}
-        }
-        
-
-
-        if (splittedVert[i] != keys[i]) {
-            return {status: "failed", reason: "Ключи вершин должны соответствовать названию треугольника. Например 'ABC', a: 1, b: 2, c: 3"}
-        }
-        // if (rs+bs<=ls || ls+rs<=bs || bs+ls<=rs) //return dieError('The values entered cannot make a triangle.  The sum of the length of every two sides must exceed the length of the third side.');
-        // return dieError('Ошибка, сумма длин каждых двух сторон должна быть больше длины третьей стороны.');
-   
     }
-    
 
-    return copyArr
+    // let s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+
+    return myArr;
 
 }
 
 
 let triangles = [
-    { vertices: "ABC", a: 10, b: 20, c: 22.36 },
-    { vertices: "BCA", b: 35, c: 40, a: 40 },
-    { vertices: "EDF", e: 10, d: 2, f: 65.3 },
-    //{ vertices: "ABC", a: 10, b: 20, c: 20 },
+    { vertices: "BCA", b: 35, c: 20, a: 40 },
+    { vertices: "ABF", a: 1, b: 2.2, f: 2.2 },
+    { vertices: "EDF", e: 40, d: 30, f: 65 },
+    { vertices: "ABC", a: 10, b: 20, c: 20 },
 ]
-
 
 console.log(sortTriangles(triangles));
