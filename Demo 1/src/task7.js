@@ -42,8 +42,7 @@ function fibInRange(obj) {
 				result.push(fibs[i]);
 		}
 	}
-	return result
-
+	return result;
 }
 
 console.log(fibInRange({ length: "9" }));
