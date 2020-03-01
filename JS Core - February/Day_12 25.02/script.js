@@ -7,7 +7,7 @@ dom.btn.addEventListener("click", () => {
     Cookie.set(Date.now(), dom.inp.value, 2);
     //localStorage.setItem(Date.now(), dom.inp.value);
 
-    const arr = JSON.parse(localStorage.getItem("inputs") || []);
+    const arr = JSON.parse(localStorage.getItem("inputs")) || [];
     arr.push(dom.inp.value);
     localStorage.setItem("inputs", JSON.stringify(arr))
     dom.inp.value = ""
