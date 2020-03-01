@@ -1,4 +1,4 @@
-function cheessBoard(height, width, sign) {
+function createCheeseBoard(height, width, sign) {
     if (sign === '') return { status: "failed", reason: "Введите 3-й аргумент" };
     if (height === 0 || height > 50 || width === 0 || width > 50) return { status: "failed", reason: "Введите 1-й и 2-й аргументы в диапазоне от 1 до 50" };
     if (!Number.isInteger(height) ||
@@ -26,6 +26,6 @@ function cheessBoard(height, width, sign) {
     return line
 }
 
-console.log(cheessBoard(5, 5, "*"));
+console.log(createCheeseBoard(5, 5, "*"));
 
 

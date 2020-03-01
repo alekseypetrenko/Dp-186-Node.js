@@ -1,4 +1,4 @@
-function sortTriangles(arr) {
+function sortTriangle(arr) {
     // делаем копию исходного массива, которую можно изменять
     let myArr = JSON.parse(JSON.stringify(arr));
 
@@ -43,8 +43,8 @@ function sortTriangles(arr) {
         return { vertices: triangle.vertices, area }
     })
 
-    return areaCalc.sort((a, b) => a.area - b.area )
-                    .map(el => el.vertices);
+    return areaCalc.sort((a, b) => a.area - b.area)
+        .map(el => el.vertices);
 }
 
 
@@ -55,4 +55,4 @@ let triangles = [
     { vertices: "ABC", a: 10, b: 20, c: 20 },
 ]
 
-console.log(sortTriangles(triangles));
+console.log(sortTriangle(triangles));

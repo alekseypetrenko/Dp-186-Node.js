@@ -1,18 +1,19 @@
 function fib(n) {
 	let prev = 0, next = 1;
-	let arr = [0]
+	let arr = []
+	arr.push(0)
 	for (let i = 0; i < n; i++) {
 		next = prev + next;
 		prev = next - prev;
-		arr.push(0)
 		arr.push(next)
 	}
 	return arr
 }
 
-function fibInRange(obj) {
+function fibRow(obj) {
 	const result = [];
-	const fibs = fib(200);
+	const fibs = fib(1000);
+	
 	const keys = Object.keys(obj);
 	if (keys.length > 2) {
 		return { status: "failed", reason: "Больше двух аргументов" };
@@ -42,10 +43,12 @@ function fibInRange(obj) {
 				result.push(fibs[i]);
 		}
 	}
+	console.log(result);
+	
 	return result;
 }
 
-console.log(fibInRange({ length: "9" }));
-console.log(fibInRange({ min: 0, max: "1000" }));
-console.log(fibInRange({ length: 10 }));
-console.log(fibInRange({ length: "20" }));
+console.log(fibRow({ length: "9" }));
+console.log(fibRow({ min: 0, max: 10 }));
+console.log(fibRow({ length: 10 }));
+console.log(fibRow({ length: "20" }));
