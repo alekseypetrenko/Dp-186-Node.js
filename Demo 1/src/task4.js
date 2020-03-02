@@ -9,13 +9,9 @@ function isPalindrom(str) {
 }
 
 function checkPolindrome(str) {
-
-    if (typeof str != "number") {
-        return { status: "failed", reason: "Аргумент функции не является числом" };
-    }
-    str = Math.abs(str);
-    if (str < 10) {
-        return { status: "failed", reason: "Введите число больше 10" };
+    let err = validation(str);
+    if( typeof err == "object"){
+        return err;
     }
     str = str.toString();
     let maxPalindrome = "";
@@ -33,8 +29,16 @@ function checkPolindrome(str) {
     return maxPalindrome;
 }
 
-console.log(checkPolindrome("23"));
-
+function validation(str){
+    if (typeof str != "number") {
+        return { status: "failed", reason: "Аргумент функции не является числом" };
+    }
+    str = Math.abs(str);
+    if (str < 10) {
+        return { status: "failed", reason: "Введите число больше 10" };
+    }
+}
+console.log(checkPolindrome(12));
 
 // Оптимизированый алгоритм с нахождением центра палиндрома. РАЗОБРАТЬ!!!
 // function expandAroundCenterSolution(s) {
