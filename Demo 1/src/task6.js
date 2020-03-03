@@ -21,7 +21,7 @@ function getNumbers (length, num) {
     } else {
         let start = sqrt + 1;
 
-        for (let i = 0; i < length; i++) {
+        for (let i = 0; i <= length; i++) {
             console.log(start++);
         }
     }
