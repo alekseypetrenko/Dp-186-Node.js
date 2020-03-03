@@ -1,16 +1,15 @@
 function isPalindrom(str) {
     str = str.toString();
     let reversedStr = "";
-
     for (let char of str) {
         reversedStr = char + reversedStr;
     }
     return reversedStr === str;
 }
 
-function checkPolindrome(str) {
+export function checkPolindrome(str) {
     let err = validation(str);
-    if( typeof err == "object"){
+    if (typeof err == "object") {
         return err;
     }
     str = str.toString();
@@ -29,7 +28,7 @@ function checkPolindrome(str) {
     return maxPalindrome;
 }
 
-function validation(str){
+function validation(str) {
     if (typeof str != "number") {
         return { status: "failed", reason: "Аргумент функции не является числом" };
     }
@@ -38,7 +37,9 @@ function validation(str){
         return { status: "failed", reason: "Введите число больше 10" };
     }
 }
-console.log(checkPolindrome(12));
+
+
+
 
 // Оптимизированый алгоритм с нахождением центра палиндрома. РАЗОБРАТЬ!!!
 // function expandAroundCenterSolution(s) {
