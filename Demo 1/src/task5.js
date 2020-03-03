@@ -26,36 +26,53 @@ function getLuckyTicket(obj) {
                 even += Number(arr[j]);
             } else {
                 odd += Number(arr[j]);
-            }          
+            }
         }
-        if(even === odd){
+        if (even === odd) {
             answer.hardMethod++
         }
     }
 
     // simpleMethod, до 999 нет смысла считать
-    for (let i = min; i <= max; i++){
+    for (let i = min; i <= max; i++) {
         let arr = i.toString().split("");
-        if (arr.length > 3 ){
+        if (arr.length > 3) {
             let first3Digits = arr.concat();
             let last3Digits = first3Digits.splice(arr.length - 3, 3);
-            
-        } else {
-            console.log(2);
+
+            let first3DigitsSum = first3Digits.reduce((sum, cur) => {
+                sum += cur;
+                return sum;
+            })
+            let last3DigitsSum = last3Digits.reduce((sum, cur) => {
+                sum += cur;
+                return sum;
+            })
+
+            if (first3DigitsSum === last3DigitsSum) {
+                answer.simpleMethod++;
+            }
+
         }
     }
 
+    if (answer.simpleMethod > answer.hardMethod) {
+        answer.method = "simpleMethod";
+    } else if (answer.simpleMethod < answer.hardMethod) {
+        answer.method = "hardMethod";
+    } else {
+        answer.method = "friendship won";
+    }
 
-    //return answer;
+    return answer;
 
 }
 
-console.log(getLuckyTicket({ min: 129998, max: 130010 }));
-
-// console.log(getLuckyTicket({ min: 144, max: 155 }));
-// console.log(getLuckyTicket({ min: 123, max: 7788 }));
-// console.log(getLuckyTicket({ min: 144, max: 4578 }));
-// console.log(getLuckyTicket({ min: 12345, max: 654897 }));
-// console.log(getLuckyTicket({ min: 144, max: 5234 }));
+//console.log(getLuckyTicket({ min: 101002, max: 101101 }));
+//console.log(getLuckyTicket({ min: 144, max: 155 }));
+//console.log(getLuckyTicket({ min: 123, max: 7788 }));
+//console.log(getLuckyTicket({ min: 144, max: 4578 }));
+console.log(getLuckyTicket({ min: 1, max: 999999 }));
+//console.log(getLuckyTicket({ min: 144, max: 5234 }));
 
 
