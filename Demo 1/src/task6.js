@@ -3,18 +3,15 @@ export function getNumbers(length, num) {
     if (typeof err === "object") {
         return err;
     }
-    
+
     length = Math.abs(length);
     num = Math.abs(num);
-    
     let sqrt = Math.sqrt(num)
     if (!Number.isInteger(sqrt)) return { status: "failed", reason: "2-й аргумент не является квадратом целого числа" };
-
     let result = [];
     for (let i = 0; i < length; i++) {
         result.push(sqrt++);
     }
-
     return result.join(" ");
 }
 

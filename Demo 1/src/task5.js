@@ -1,15 +1,11 @@
-function getLuckyTicket(obj) {
+export function getLuckyTicket(obj) {
     let min = obj.min;
     let max = obj.max;
 
-    if (isNaN(Number(min)) || isNaN(Number(max))) return { status: "failed", reason: "Введите целые числа" };
-    if (Number(min) > Number(max)) return { status: "failed", reason: "Min не может быть больше Max" };
-    if (Number(min) === 0 || Number(max) === 0) return { status: "failed", reason: "Числа не могут быть равны 0" };
-    min = Math.abs(Number(min));
-    max = Math.abs(Number(max));
-    const minLength = Math.ceil(Math.log10(min + 1));
-    const maxLength = Math.ceil(Math.log10(max + 1));
-    if (minLength > 6 || maxLength > 6) return { status: "failed", reason: "Числе не могут иметь больше 6 цифр" };
+    let err = validation(min, max);
+    if (typeof err === "object") {
+        return err;
+    }
 
     let answer = {
         method: "",
@@ -37,6 +33,7 @@ function getLuckyTicket(obj) {
     for (let i = min; i <= max; i++) {
         let arr = i.toString().split("");
         if (arr.length > 3) {
+            arr = arr.map(el => Number(el));
             let first3Digits = arr.concat();
             let last3Digits = first3Digits.splice(arr.length - 3, 3);
 
@@ -48,11 +45,9 @@ function getLuckyTicket(obj) {
                 sum += cur;
                 return sum;
             })
-
             if (first3DigitsSum === last3DigitsSum) {
                 answer.simpleMethod++;
             }
-
         }
     }
 
@@ -63,16 +58,18 @@ function getLuckyTicket(obj) {
     } else {
         answer.method = "friendship won";
     }
-
     return answer;
-
 }
 
-//console.log(getLuckyTicket({ min: 101002, max: 101101 }));
-//console.log(getLuckyTicket({ min: 144, max: 155 }));
-//console.log(getLuckyTicket({ min: 123, max: 7788 }));
-//console.log(getLuckyTicket({ min: 144, max: 4578 }));
-console.log(getLuckyTicket({ min: 1, max: 999999 }));
-//console.log(getLuckyTicket({ min: 144, max: 5234 }));
+function validation(min, max) {
+    if (isNaN(Number(min)) || isNaN(Number(max)) || !Number.isInteger(Number(min)) || !Number.isInteger(Number(max))) return { status: "failed", reason: "Введите целые числа" };
+    if (Number(min) > Number(max)) return { status: "failed", reason: "Min не может быть больше Max" };
+    if (Number(min) === 0 || Number(max) === 0) return { status: "failed", reason: "Числа не могут быть равны 0" };
+    min = Math.abs(Number(min));
+    max = Math.abs(Number(max));
+    const minLength = Math.ceil(Math.log10(min + 1));
+    const maxLength = Math.ceil(Math.log10(max + 1));
+    if (minLength > 6 || maxLength > 6) return { status: "failed", reason: "Числе не могут иметь больше 6 цифр" };
+}
 
 

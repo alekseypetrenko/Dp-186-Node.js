@@ -1,34 +1,12 @@
-function fib(n) {
-	let prev = 0, next = 1;
-	let arr = []
-	arr.push(0)
-	for (let i = 0; i < n; i++) {
-		next = prev + next;
-		prev = next - prev;
-		arr.push(next)
-	}
-	return arr
-}
-
-function fibRow(obj) {
+export function fibRow(obj) {
 	const result = [];
 	const fibs = fib(1000);
-	
-	const keys = Object.keys(obj);
-	if (keys.length > 2) {
-		return { status: "failed", reason: "Больше двух аргументов" };
-	}
-	for (let i = 0; i < keys.length; i++) {
-		for (let key in obj) {
-			obj[key] = Number(obj[key]);
-			obj[key] = Math.abs(obj[key]);
-			if (typeof obj[key] != "number" || !Number.isInteger(obj[key])) {
-				return { status: "failed", reason: "Ключи объекта должны быть целыми числами" };
-			}
-		}
+	let err = validation(obj);
+	if (typeof err === "object") {
+		return err;
 	}
 
-	if (keys.length == 2) {
+	if (Object.keys(obj).length == 2) {
 		obj.min = Math.abs(obj.min);
 		obj.max = Math.abs(obj.max);
 		for (let i = obj.min; i < fibs.length; i++) {
@@ -43,12 +21,33 @@ function fibRow(obj) {
 				result.push(fibs[i]);
 		}
 	}
-	console.log(result);
-	
 	return result;
 }
 
-console.log(fibRow({ length: "9" }));
-console.log(fibRow({ min: 0, max: 10 }));
-console.log(fibRow({ length: 10 }));
-console.log(fibRow({ length: "20" }));
+function fib(n) {
+	let prev = 0, next = 1;
+	let arr = [];
+	arr.push(0);
+	for (let i = 0; i < n; i++) {
+		next = prev + next;
+		prev = next - prev;
+		arr.push(next);
+	}
+	return arr;
+}
+
+function validation(obj) {
+	const keys = Object.keys(obj);
+	if (keys.length > 2) {
+		return { status: "failed", reason: "Больше двух аргументов" };
+	}
+	for (let i = 0; i < keys.length; i++) {
+		for (let key in obj) {
+			obj[key] = Number(obj[key]);
+			obj[key] = Math.abs(obj[key]);
+			if (typeof obj[key] != "number" || !Number.isInteger(obj[key])) {
+				return { status: "failed", reason: "Ключи объекта должны быть целыми числами" };
+			}
+		}
+	}
+}
