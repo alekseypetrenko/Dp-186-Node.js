@@ -1,5 +1,6 @@
-export function getNumbers(length, num) {
-    let err = validation(length, num);
+export function getNumbers(...args) {
+    let [length, num] = args;
+    let err = validation(...args);
     if (typeof err === "object") {
         return err;
     }
@@ -15,7 +16,8 @@ export function getNumbers(length, num) {
     return result.join(" ");
 }
 
-function validation(length, num) {
+function validation(...args){
+    let [length, num] = args;
     if (!Number.isInteger(length) || !Number.isInteger(num)) return { status: "failed", reason: "Аргументы должны быть целыми числами" };
     if (length === 0 || num === 0) return { status: "failed", reason: "Аргументы функции должны быть больше 0" };
 }

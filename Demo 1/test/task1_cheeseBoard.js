@@ -11,8 +11,8 @@ export function testCreateCheeseBoard(assert) {
         it("Высота или ширина не являются числами, символ не является строкой", () => {
             assert.deepEqual(createCheeseBoard("re", "er", 2), { status: "failed", reason: "1-й и 2-й аргументы должны быть целыим числами, 3-й - строкой" });
         })
-        it("Пустые параметры", () => {
-            assert.deepEqual(createCheeseBoard(), { status: "failed", reason: "Какой-то из 3 параметров пустой" });
+        it("Передано не 3 параметра", () => {
+            assert.deepEqual(createCheeseBoard(1), { status: "failed", reason: "Введите 3 аргумента" });
         })
         it("Введены числа в виде строки '2', '2' ", () => {
             assert.equal(createCheeseBoard('2', '2', '*'), '* \n *\n');

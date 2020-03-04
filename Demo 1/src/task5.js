@@ -1,4 +1,4 @@
-export function getLuckyTicket(obj) {
+ export function getLuckyTicket(obj) {
     let min = obj.min;
     let max = obj.max;
 
@@ -58,6 +58,7 @@ export function getLuckyTicket(obj) {
     } else {
         answer.method = "friendship won";
     }
+    
     return answer;
 }
 
@@ -71,5 +72,3 @@ function validation(min, max) {
     const maxLength = Math.ceil(Math.log10(max + 1));
     if (minLength > 6 || maxLength > 6) return { status: "failed", reason: "Числе не могут иметь больше 6 цифр" };
 }
-
-

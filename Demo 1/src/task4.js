@@ -29,17 +29,11 @@ export function checkPolindrome(str) {
 }
 
 function validation(str) {
-    if (typeof str != "number") {
-        return { status: "failed", reason: "Аргумент функции не является числом" };
-    }
+    if (typeof str != "number") return { status: "failed", reason: "Аргумент функции не является числом" };
     str = Math.abs(str);
-    if (str < 10) {
-        return { status: "failed", reason: "Введите число больше 10" };
-    }
+    if (str < 10) return { status: "failed", reason: "Введите число больше 10" };
+    if (!Number.isInteger(2.2)) return { status: "failed", reason: "Число не является целым" };
 }
-
-
-
 
 // Оптимизированый алгоритм с нахождением центра палиндрома. РАЗОБРАТЬ!!!
 // function expandAroundCenterSolution(s) {

@@ -17,6 +17,9 @@ export function testFibRow(assert) {
         it("Введены строки для значений min/max", () => {
             assert.deepEqual(fibRow({ min: "sad", max: "dfersgf" }), { status: "failed", reason: "Ключи объекта должны быть целыми числами" });
         })
+        it("Передан не объект", () => {
+            assert.deepEqual(fibRow(2), { status: "failed", reason: "Передан не объект" });
+        })
     })
 }
 

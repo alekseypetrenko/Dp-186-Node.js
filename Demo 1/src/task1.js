@@ -1,5 +1,6 @@
-export function createCheeseBoard(height, width, sign) {
-    let err = validation(height, width, sign);
+export function createCheeseBoard(...args) {
+    let [height, width, sign] = args;
+    let err = validation(...args);
     if (typeof err === "object") {
         return err;
     }
@@ -22,9 +23,10 @@ export function createCheeseBoard(height, width, sign) {
     return line;
 }
 
-function validation(height, width, sign) {
+function validation(...args) {
+    let [height, width] = args;
+    if (args.length != 3) return { status: "failed", reason: "Введите 3 аргумента" };
     if (height === 0 || height > 50 || width === 0 || width > 50) return { status: "failed", reason: "Введите 1-й и 2-й аргументы в диапазоне от 1 до 50" };
-    if (height === undefined || width === undefined || sign === undefined) return { status: "failed", reason: "Какой-то из 3 параметров пустой" };
     height = Number(height);
     width = Number(width);
     Math.abs(height);
@@ -33,3 +35,5 @@ function validation(height, width, sign) {
         return { status: "failed", reason: "1-й и 2-й аргументы должны быть целыим числами, 3-й - строкой" };
     }
 }
+
+createCheeseBoard(2, 2)

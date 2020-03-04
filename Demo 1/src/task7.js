@@ -38,9 +38,8 @@ function fib(n) {
 
 function validation(obj) {
 	const keys = Object.keys(obj);
-	if (keys.length > 2) {
-		return { status: "failed", reason: "Больше двух аргументов" };
-	}
+	if (typeof obj != "object") return { status: "failed", reason: "Передан не объект" };
+	if (keys.length > 2) return { status: "failed", reason: "Больше двух аргументов" };
 	for (let i = 0; i < keys.length; i++) {
 		for (let key in obj) {
 			obj[key] = Number(obj[key]);

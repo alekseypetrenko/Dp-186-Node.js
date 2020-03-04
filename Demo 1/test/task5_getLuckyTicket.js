@@ -17,8 +17,11 @@ export function testGetLuckyTicket(assert) {
         it("Победитель Hard method", () => {
             assert.deepEqual(getLuckyTicket({ min: 144, max: 4578 }), { method: "hardMethod", hardMethod: 216, simpleMethod: 34 });
         })
-        it("Победитель Simple method", () => {
+        it("Победитель Simple, min 1, max 999999", () => {
             assert.deepEqual(getLuckyTicket({ min: 1, max: 999999 }), { method: "simpleMethod", hardMethod: 25080, simpleMethod: 55251 });
+        })
+        it("Победитель Simple, min 2, max 999998", () => {
+            assert.deepEqual(getLuckyTicket({ min: 2, max: 999998 }), {method: "simpleMethod", hardMethod: 25080, simpleMethod: 55250});
         })
         // Спросить
         // it("Ничья", () => {
