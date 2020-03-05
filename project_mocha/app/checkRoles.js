@@ -48,5 +48,5 @@ function validation(...args){
     }
 }
 
-console.log(checkRoles(roles, "Fiber"));
+console.log(checkRoles(roles, "Fiber", "adsfrs "));
 
