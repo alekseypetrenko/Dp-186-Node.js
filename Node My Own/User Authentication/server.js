@@ -26,15 +26,15 @@ app.post("/users", async (req, res) =>{
 })
 
 app.post("/users/login", async (req, res) => {
-    const user = users.find(user => user == req.body.name)
+    const user = users.find(user => user = req.body.pass)
     if(user === null){
         return res.status(400).send("Cannot find user")
     }
     try {
-        if (await bcrypt.compare(req.body.pass, user.pass)){
+        if (await bcrypt.compare(req.body.pass, user.pass)){           
             res.send("Success")
         } else {
-            res.send("Not Allowed11")
+            res.send("Not Allowed")
         }
     } catch {
         res.status(500).send();
