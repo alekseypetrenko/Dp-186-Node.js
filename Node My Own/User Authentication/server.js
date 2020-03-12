@@ -12,7 +12,7 @@ app.get("/users", (req, res) =>{
 
 app.post("/users", async (req, res) =>{
     try {     
-        //const salt = await bcrypt.genSalt();
+        //const salt = await bcrypt.genSalt  ();
         const hashedPass = await bcrypt.hash(req.body.pass, 10);
         const user = {
             name: req.body.name,
