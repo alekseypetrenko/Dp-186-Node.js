@@ -4,7 +4,6 @@ export class ModelMessage {
         this.handleLoad = cback;
     }
 
-
     getMessages() {
         const ajax = new XMLHttpRequest();
         ajax.addEventListener("load", () => {
@@ -13,5 +12,10 @@ export class ModelMessage {
         });
         ajax.open("GET", this.link);
         ajax.send();
+    }
+
+    filter(str){
+        const regSearch = new RegExp(str, 'i');
+        return this.messages.filter(({message})=>regSearch.test(message));
     }
 }
